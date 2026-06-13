@@ -1,0 +1,267 @@
+---
+const navLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'About Us', href: '#why-us' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="header" id="header">
+  <div class="header-top-bar">
+    <div class="container header-top-inner">
+      <a href="tel:5068755337" class="top-bar-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        506-875-5337
+      </a>
+      <span class="top-bar-divider" aria-hidden="true">|</span>
+      <a href="mailto:info@TLBELECTRIC.ca" class="top-bar-link">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        info@TLBELECTRIC.ca
+      </a>
+      <span class="top-bar-divider" aria-hidden="true">|</span>
+      <span class="top-bar-text">Greater Moncton, NB</span>
+    </div>
+  </div>
+
+  <div class="header-main">
+    <div class="container header-inner">
+      <a href="/" class="logo-link" aria-label="TLB Electric Home">
+        <img src="/logo-light.svg" alt="TLB Electric" class="logo" />
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        {navLinks.map(link => (
+          <a href={link.href} class="nav-link">{link.label}</a>
+        ))}
+      </nav>
+
+      <a href="#contact" class="btn btn-primary header-cta">Get a Free Quote</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    {navLinks.map(link => (
+      <a href={link.href} class="mobile-nav-link">{link.label}</a>
+    ))}
+    <a href="tel:5068755337" class="mobile-nav-link mobile-phone">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      506-875-5337
+    </a>
+    <div style="padding: 1rem 1.5rem 1.5rem;">
+      <a href="#contact" class="btn btn-primary" style="width:100%; justify-content:center;">Get a Free Quote</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('header');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
+    hamburger.classList.toggle('active');
+  });
+
+  document.querySelectorAll('.mobile-nav-link, .mobile-menu .btn').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.remove('open');
+      hamburger?.classList.remove('active');
+      hamburger?.setAttribute('aria-expanded', 'false');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+  }
+
+  /* Thin top info bar */
+  .header-top-bar {
+    background: #1e1c1e;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .header-top-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    height: 34px;
+  }
+
+  .top-bar-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+
+  .top-bar-link:hover { color: var(--red); }
+
+  .top-bar-divider {
+    color: rgba(255,255,255,0.2);
+    font-size: 0.7rem;
+  }
+
+  .top-bar-text {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.02em;
+    margin-left: auto;
+  }
+
+  /* Main nav bar */
+  .header-main {
+    background: var(--charcoal);
+    box-shadow: 0 2px 0 rgba(213,44,60,0.6);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    height: 80px;
+  }
+
+  .logo-link {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+  }
+
+  .nav-link {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: color 0.2s;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .nav-link:hover { color: var(--white); }
+
+  .header-cta {
+    margin-left: 1rem;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--white);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+  }
+
+  .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: var(--charcoal);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .mobile-menu.open { display: flex; }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: color 0.2s;
+  }
+
+  .mobile-nav-link:hover { color: var(--white); }
+
+  .mobile-phone {
+    color: var(--red) !important;
+    text-transform: none !important;
+    font-size: 1rem !important;
+  }
+
+  @media (max-width: 860px) {
+    .nav,
+    .header-cta {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
+    .top-bar-text {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,277 @@
+---
+---
+
+<section class="contact" id="contact">
+  <div class="container contact-layout">
+    <div class="contact-info">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title" style="color: var(--white);">Request a Free Quote</h2>
+      <p class="section-subtitle" style="color: rgba(255,255,255,0.7); margin-bottom: 2.5rem;">
+        Fill out the form and we'll get back to you within one business day. No obligation, no pressure — just a straight answer on your project.
+      </p>
+
+      <div class="contact-details">
+        <a href="tel:5068755337" class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-detail-label">Phone</span>
+            <span class="contact-detail-value">506-875-5337</span>
+          </div>
+        </a>
+
+        <a href="mailto:info@TLBELECTRIC.ca" class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-detail-label">Email</span>
+            <span class="contact-detail-value">info@TLBELECTRIC.ca</span>
+          </div>
+        </a>
+
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="contact-detail-label">Service Area</span>
+            <span class="contact-detail-value">Greater Moncton, NB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrapper">
+      <form class="contact-form" name="quote-request" method="POST" data-netlify="true" novalidate>
+        <input type="hidden" name="form-name" value="quote-request" />
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="first-name" name="first-name" required autocomplete="given-name" placeholder="John" />
+          </div>
+          <div class="form-group">
+            <label for="last-name">Last Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="last-name" name="last-name" required autocomplete="family-name" placeholder="Smith" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number <span aria-hidden="true">*</span></label>
+            <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="(506) 000-0000" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="john@example.com" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service Needed <span aria-hidden="true">*</span></label>
+          <select id="service" name="service" required>
+            <option value="" disabled selected>Select a service...</option>
+            <option value="residential">Residential Electrical</option>
+            <option value="commercial">Commercial Electrical</option>
+            <option value="panel-upgrade">Panel Upgrade</option>
+            <option value="ev-charger">EV Charger Installation</option>
+            <option value="new-construction">New Construction</option>
+            <option value="emergency">Emergency Service</option>
+            <option value="other">Other / Not Sure</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Tell Us About Your Project</label>
+          <textarea id="message" name="message" rows="4" placeholder="Describe your project or what you need help with..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary submit-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+          Send My Quote Request
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 6rem 0;
+    background: var(--charcoal-light);
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-detail-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  a.contact-detail-item:hover {
+    opacity: 0.8;
+  }
+
+  .contact-detail-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    background: rgba(213, 44, 60, 0.15);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+  }
+
+  .contact-detail-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .contact-detail-label {
+    display: block;
+    font-size: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.1rem;
+  }
+
+  .contact-detail-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--white);
+    font-size: 1rem;
+  }
+
+  .contact-form-wrapper {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 2.5rem;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-group label {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+  }
+
+  .form-group label span {
+    color: var(--red);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    background: var(--off-white);
+    border: 1.5px solid var(--gray);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='%23363436'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    padding-right: 2.5rem;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    color: #aaa;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(213, 44, 60, 0.12);
+    background: var(--white);
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-form-wrapper {
+      padding: 1.5rem;
+    }
+  }
+</style>
