@@ -4,6 +4,7 @@ const navLinks = [
   { label: 'About Us', href: '#why-us' },
   { label: 'Contact', href: '#contact' },
 ];
+const base = import.meta.env.BASE_URL;
 ---
 
 <header class="header" id="header">
@@ -26,7 +27,7 @@ const navLinks = [
   <div class="header-main">
     <div class="container header-inner">
       <a href="/" class="logo-link" aria-label="TLB Electric Home">
-        <img src="/logo-light.svg" alt="TLB Electric" class="logo" />
+        <img src={`${base}logo-light.svg`} alt="TLB Electric" class="logo" />
       </a>
 
       <nav class="nav" aria-label="Main navigation">
