@@ -50,8 +50,11 @@
     </div>
 
     <div class="contact-form-wrapper">
-      <form class="contact-form" name="quote-request" method="POST" data-netlify="true" novalidate>
-        <input type="hidden" name="form-name" value="quote-request" />
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE" />
+        <input type="hidden" name="subject" value="New Quote Request — TLB Electric" />
+        <input type="hidden" name="from_name" value="TLB Electric Website" />
+        <input type="checkbox" name="botcheck" style="display:none;" />
 
         <div class="form-row">
           <div class="form-group">
