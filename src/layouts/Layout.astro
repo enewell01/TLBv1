@@ -6,8 +6,49 @@ interface Props {
 
 const {
   title = 'TLB Electric | Licensed Electrician in Moncton, NB',
-  description = 'TLB Electric is a licensed electrical contractor serving the Greater Moncton area. Residential, commercial, panel upgrades, EV chargers, and more. Get a free quote today.',
+  description = 'TLB Electric — licensed electrician in Moncton, NB. Residential & commercial electrical, panel upgrades, EV charger installation, and emergency services across Greater Moncton. Free quotes.',
 } = Astro.props;
+
+const siteUrl = 'https://tlbelectric.ca';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ElectricalContractor",
+  "name": "TLB Electric",
+  "telephone": "+15068755337",
+  "email": "info@TLBELECTRIC.ca",
+  "url": siteUrl,
+  "priceRange": "$$",
+  "description": "Licensed electrical contractor serving the Greater Moncton area. Residential, commercial, panel upgrades, EV charger installation, new construction, and emergency electrical services.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Moncton",
+    "addressRegion": "NB",
+    "addressCountry": "CA"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 46.0878,
+    "longitude": -64.7782
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Moncton" },
+    { "@type": "City", "name": "Dieppe" },
+    { "@type": "City", "name": "Riverview" }
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Electrical Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Residential Electrical" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Electrical" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Panel Upgrades" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "EV Charger Installation" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "New Construction Electrical" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency Electrical Services" } }
+    ]
+  }
+};
 ---
 
 <!doctype html>
@@ -15,11 +56,30 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="TLB Electric" />
+    <meta property="og:locale" content="en_CA" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="canonical" href={siteUrl} />
+
     <title>{title}</title>
+
+    <!-- LocalBusiness structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
