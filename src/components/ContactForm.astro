@@ -97,16 +97,61 @@
           <textarea id="message" name="message" rows="4" placeholder="Describe your project or what you need help with..."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary submit-btn">
+        <button type="submit" class="btn btn-primary submit-btn" id="submit-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
           </svg>
           Send My Quote Request
         </button>
+
+        <div id="form-success" class="form-success" style="display:none;" role="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+          Message sent! We'll be in touch.
+        </div>
+        <div id="form-error" class="form-error" style="display:none;" role="alert">
+          Something went wrong. Please try again or call us at 506-875-5337.
+        </div>
       </form>
     </div>
   </div>
 </section>
+
+<script>
+  const form = document.querySelector('.contact-form') as HTMLFormElement;
+  const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const success = document.getElementById('form-success')!;
+  const error = document.getElementById('form-error')!;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    success.style.display = 'none';
+    error.style.display = 'none';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        success.style.display = 'flex';
+        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        error.style.display = 'block';
+      }
+    } catch {
+      error.style.display = 'block';
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg> Send My Quote Request`;
+    }
+  });
+</script>
 
 <style>
   .contact {
@@ -259,6 +304,30 @@
     padding: 1rem;
     font-size: 1rem;
     margin-top: 0.25rem;
+  }
+
+  .form-success,
+  .form-error {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.875rem 1rem;
+    border-radius: 6px;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .form-success {
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1.5px solid #6ee7b7;
+  }
+
+  .form-error {
+    background: #fef2f2;
+    color: #991b1b;
+    border: 1.5px solid #fca5a5;
   }
 
   @media (max-width: 900px) {
