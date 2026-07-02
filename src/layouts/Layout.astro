@@ -6,15 +6,18 @@ interface Props {
 
 const {
   title = 'TLB Electric | Licensed Electrician in Moncton, NB',
-  description = 'TLB Electric — licensed electrician in Moncton, NB. Residential & commercial electrical, panel upgrades, EV charger installation, and emergency services across Greater Moncton. Free quotes.',
+  description = 'TLB Electric — licensed electrician serving Moncton, NB. Residential & commercial wiring, panel upgrades, EV chargers, and emergency electrical services.',
 } = Astro.props;
 
 const siteUrl = 'https://tlbelectric.ca';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL('/logo-dark.png', Astro.site);
 
 const schema = {
   "@context": "https://schema.org",
-  "@type": "ElectricalContractor",
+  "@type": "Electrician",
   "name": "TLB Electric",
+  "image": ogImageURL.toString(),
   "telephone": "+15068755337",
   "email": "info@TLBELECTRIC.ca",
   "url": siteUrl,
@@ -34,7 +37,13 @@ const schema = {
   "areaServed": [
     { "@type": "City", "name": "Moncton" },
     { "@type": "City", "name": "Dieppe" },
-    { "@type": "City", "name": "Riverview" }
+    { "@type": "City", "name": "Riverview" },
+    { "@type": "City", "name": "Shediac" },
+    { "@type": "City", "name": "Memramcook" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/TLBELECTRIC",
+    "https://www.facebook.com/p/TLB-Electric-61587323362780/"
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
@@ -62,9 +71,10 @@ const schema = {
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={siteUrl} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
     <meta property="og:site_name" content="TLB Electric" />
     <meta property="og:locale" content="en_CA" />
 
@@ -72,8 +82,9 @@ const schema = {
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
 
-    <link rel="canonical" href={siteUrl} />
+    <link rel="canonical" href={canonicalURL} />
 
     <title>{title}</title>
 
@@ -81,7 +92,6 @@ const schema = {
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/favicon.svg" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
